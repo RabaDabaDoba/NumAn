@@ -13,7 +13,7 @@ tolerance=1e-8;
 while (norm(x)>tolerance)
 A=J;
 b = f;
-%Ax = b --> x = A\b
+
 x=A(start)\b(start);
 start=start-x;
 end

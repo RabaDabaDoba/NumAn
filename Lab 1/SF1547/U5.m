@@ -1,5 +1,10 @@
 load minidigits.mat
 
+%a) Eftersom vrje siffta består av 256 olika värden så kommer vi att ha 256
+%okända variabler i vårt ekvationsystem. 
+
+
+
 xaxis = [];
 yaxis = [];
 yaxisInv = [];
@@ -13,7 +18,7 @@ for k=0:0.1:10
         b = C'*testdata(:,j);
         x = A\b;
         nv(j) = norm(C*x-testdata(:,j)); %Calculations
-        if(nv(j) < k)%Filter out values of nv(k) that are smaller than the 
+        if(nv(j) < k)%Filtrerar ut värden mindre än toleransen
             g = [g j]; %Add values to list
         end
     end

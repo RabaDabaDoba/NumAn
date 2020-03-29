@@ -1,6 +1,9 @@
 clc
 counter = 2;
 M = 1.05e04;
+%Genom att studera en graf med väden från alla maxvärden för olika theta
+%mellan 0-100. Så kan man observera att max(generator(40,0)) är ungefär
+%lika med M
 a(1) = 40;
 a(2) = 41;
 disp('    a            e          ');

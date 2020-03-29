@@ -8,14 +8,21 @@ maxIt = 10;
 tolerance = 1e-8;
 error(1) = abs(a(2) - a(1));
 disp([a(2) error(1)]);
-
 while(error(counter-1) >= tolerance) && (counter <= maxIt)
- fxn = max(generator(a(counter),0)) - M; %f(x)
- fxn1 = max(generator(a(counter-1),0))- M; %(f(x-1))
+%while(counter <= 5)
+ fxn = max(generator(a(counter),0)) - M;
+ fxn1 = max(generator(a(counter-1),0))- M;
  current = a(counter) - fxn .* ((a(counter)-a(counter-1))./(fxn-fxn1));
  a(counter+1) = current;
  error(counter) = abs(a(counter) - a(counter-1));
  maxValues(counter-1) = error(counter);
- disp([current error(counter)]);
  counter = counter + 1;
 end
+
+disp(a(counter));
+subplot(2,1,1);
+plot(maxValues)
+% title("MaxValues");
+% subplot(2,1,2);
+% plot(sumValues)
+% title("SumValues");

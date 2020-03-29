@@ -2,8 +2,9 @@ load minidigits.mat
 
 xaxis = [];
 yaxis = [];
+yaxisInv = [];
 
-for k=0:0.01:10
+for k=0:0.1:10
     xaxis = [xaxis k];
     clear g;
     g = [];
@@ -11,10 +12,9 @@ for k=0:0.01:10
     for j = 1:1000
         b = C'*testdata(:,j);
         x = A\b;
-        nv(j) = norm(C*x-testdata(:,j));
-        %Filter out values of nv(k) that are smaller than the 
-        if(nv(j) < k)
-            g = [g j];
+        nv(j) = norm(C*x-testdata(:,j)); %Calculations
+        if(nv(j) < k)%Filter out values of nv(k) that are smaller than the 
+            g = [g j]; %Add values to list
         end
     end
     
@@ -22,7 +22,7 @@ for k=0:0.01:10
     clear counterF;
     counterC=0;
     counterF=0;
-    for i=1:1:length(g)
+    for i=1:1:length(g) %Calculate the hit rate
         if 2 == testdatad(g(i))
             counterC = counterC+1;
         else
@@ -31,7 +31,16 @@ for k=0:0.01:10
         
     end
     yaxis = [yaxis (counterC/(counterF+counterC))];
+    yaxisInv = [yaxisInv 1-(counterC/(counterF+counterC))];
     
 end
-plot(xaxis, yaxis);
+plot(xaxis, yaxis, 'b');
+hold on;
+plot(xaxis, yaxisInv, 'r');
+hold off
+legend("Hits","Misses");
+title("Hit/miss rate");
+ylabel("Percentage (%)");
+xlabel("Threshold value (k)");
+
 %disp(["Ration:", counterC, counterF,counterC/(counterF+counterC)])

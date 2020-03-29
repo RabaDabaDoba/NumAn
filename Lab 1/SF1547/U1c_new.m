@@ -21,7 +21,7 @@ for j=-1:0.1:3
         
     end
     
-    %loglog(sort(error));
+    loglog(sort(error));
     b(counterc) = current;
     counterc = counterc + 1;
     

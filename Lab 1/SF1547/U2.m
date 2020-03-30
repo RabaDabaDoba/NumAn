@@ -22,3 +22,6 @@ while(error(counter-1) >= tolerance) && (counter <= maxIt)
  disp([current error(counter)]);
  counter = counter + 1;
 end
+
+%man ser att generatorn är skadad vid sydvästra kanten
+generator(40,1);

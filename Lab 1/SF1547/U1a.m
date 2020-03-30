@@ -8,7 +8,5 @@ plot(x, y, 'r');
 grid on
 hold on
 yl = yline(0);
-
-
 end
 

@@ -1,5 +1,8 @@
+clc
+clear b;
+format long;
 maxIt = 50;
-tolerance = 0.001;
+tolerance = 0.0000000000000001;
 counterc = 1;
 
 for j=-1:0.1:3
@@ -20,12 +23,18 @@ for j=-1:0.1:3
         counter = counter +1;
         
     end
-    
-    loglog(sort(error));
     b(counterc) = current;
     counterc = counterc + 1;
     
 end
+
+%Svar till 1 d) !
+%Vi ser på nollorna och ser att vi får kvadratisk konvergens.
+
+
+%Vi hittar även alla rötter här, i skillnad från 1 b).
+
+
 disp(["Max: ", max(b),"Min: ", min(b)]);
 %disp(b)
 

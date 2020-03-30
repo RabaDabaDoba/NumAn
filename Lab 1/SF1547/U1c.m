@@ -1,5 +1,6 @@
 format long g
-
+clc
+clear b;
 maxIt = 50;
 tolerance = 0.001;
 counterc = 1;

@@ -1,10 +1,5 @@
 load minidigits.mat
 
-%a) Eftersom vrje siffta består av 256 olika värden så kommer vi att ha 256
-%okända variabler i vårt ekvationsystem. 
-
-
-
 xaxis = [];
 yaxis = [];
 yaxisInv = [];
@@ -14,7 +9,7 @@ for k=0:0.1:10
     clear g;
     g = [];
     A = C'*C;
-    for j = 1:1000
+    for j = 1:1:1000
         b = C'*testdata(:,j);
         x = A\b;
         nv(j) = norm(C*x-testdata(:,j)); %Calculations
@@ -28,7 +23,7 @@ for k=0:0.1:10
     counterC=0;
     counterF=0;
     for i=1:1:length(g) %Calculate the hit rate
-        if 2 == testdatad(g(i))
+        if testdatad(g(i)) == 2
             counterC = counterC+1;
         else
             counterF = counterF + 1;
@@ -37,6 +32,8 @@ for k=0:0.1:10
     end
     yaxis = [yaxis (counterC/(counterF+counterC))];
     yaxisInv = [yaxisInv 1-(counterC/(counterF+counterC))];
+    
+    
     
 end
 plot(xaxis, yaxis, 'b');

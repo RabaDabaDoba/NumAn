@@ -1,5 +1,5 @@
 format long g;
-Startgissning = 1;
+Startgissning = 1.5;
 counter = 1;
 clear x;
 clear error;
@@ -14,6 +14,8 @@ while counter < 10
     %disp(["Error:" error]);
     counter = counter + 1;
 end
-loglog(sort(error));
+%%ÄNDRAT
+plot(sort(log(error)))
+%%ÄNDRAT
 disp(["Answer" answer])
 %Vi får två rötter: 1.617302479860036,   -0.720353075847192

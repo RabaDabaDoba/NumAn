@@ -4,7 +4,8 @@ xaxis = [];
 yaxis = [];
 yaxis2 = [];
 
-
+yaxiscc = [];
+yaxisff = [];
 
 
 ratio = [];
@@ -15,8 +16,9 @@ for k=0:0.1:10
     cfCounter = 0;
     ffCounter = 0;
     fcCounter = 0;
-    
+    A = C'*C; %RÅKADE TA BORT I FILEN VI SKICKA IN
     for j = 1:1:1000
+        
         b = C'*testdata(:,j);
         x = A\b;
         nv(j) = norm(C*x-testdata(:,j)); %Calculations
@@ -36,17 +38,19 @@ for k=0:0.1:10
         end
     end
     yaxis = [yaxis (ccCounter./101 .* ffCounter./899)];
-    %yaxis2 = [yaxis2 (cfCounter./899 .* fcCounter./101)];
+    yaxiscc = [yaxiscc ccCounter./101];
+    yaxisff = [yaxisff ffCounter./899];
     %disp([ccCounter/101 (cfCounter/899) ffCounter/899 (fcCounter/101)]);
     
 end
 %x = 5.1 --> bästa threshold
-max(yaxis)
 plot(xaxis, yaxis, 'b');
 hold on;
-%plot(xaxis, yaxis2, 'r');
+plot(xaxis, yaxiscc, 'g');
+hold on;
+plot(xaxis, yaxisff, 'r');
 hold off;
-legend("Ratio");
-title("Best estimation of k (ccCounter * ffCounter)");
+legend("Ratio", "Successful correct", "Successful false");
+title("Best estimation of k");
 ylabel("Score");
 xlabel("Threshold value (k)");

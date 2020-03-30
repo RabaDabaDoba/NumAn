@@ -2,12 +2,13 @@
 %ÄNDRAT
 p1 = [93 63];
 p2 = [6 16];
-
 r = [55.1 46.2];
 viscircles(p1, r(1));
 viscircles(p2, r(2));
 grid on;
 %ÄNDRAT
+
+format long g;
 
 %equations
 f = @(x)[(93 - x(1)).^2 + (63 - x(2)).^2 - 55.1.^2;(6 - x(1)).^2 + (16 - x(2)).^2 - 46.2.^2];
@@ -27,7 +28,7 @@ while (norm(x)>tolerance)
 A=J;
 b = f;
 %Ax = b --> x = A\b
-x=A(start)\b(start);
+x=A(start)\b(start)
 start=start-x;
 end
 

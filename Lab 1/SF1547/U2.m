@@ -1,4 +1,5 @@
 clc
+format long g;
 counter = 2;
 M = 1.05e04;
 %Genom att studera en graf med väden från alla maxvärden för olika theta

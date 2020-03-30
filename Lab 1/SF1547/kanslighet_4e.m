@@ -6,7 +6,8 @@
 % load eiffel2.mat
 % load eiffel3.mat
 % load eiffel4.mat
-
+subplot(2,1,1);
+spy(A);
 
 A = sparse(A); % talar om för MATLAB att matrisen är gles
 
@@ -32,6 +33,7 @@ toc
 % Plotta tornet med de maximalt ('o') och
 % minimalt ('*') känsliga noderna markerade
 
+subplot(2,1,2);
 trussplot(xnod,ynod,bars); hold on
 plot(xnod(jmax),ynod(jmax),'ro',xnod(jmin),ynod(jmin),'r*');
 hold off

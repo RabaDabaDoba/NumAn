@@ -1,8 +1,12 @@
 clc
 load eiffel1.mat
-%load eiffel2.mat
-%load eiffel3.mat
-%load eiffel4.mat
+A1 = A;
+load eiffel2.mat
+A2 = A;
+load eiffel3.mat
+A3 = A;
+load eiffel4.mat
+A4 = A;
 
 N = size(A, 1);
 b = randn(N, 1); % godtyckligt tal b

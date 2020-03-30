@@ -18,7 +18,6 @@ for k=0:0.1:10
     fcCounter = 0;
     A = C'*C; %RÅKADE TA BORT I FILEN VI SKICKA IN
     for j = 1:1:1000
-        
         b = C'*testdata(:,j);
         x = A\b;
         nv(j) = norm(C*x-testdata(:,j)); %Calculations

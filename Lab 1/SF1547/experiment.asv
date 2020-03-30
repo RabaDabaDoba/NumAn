@@ -1,0 +1,6 @@
+
+load eiffel1.mat
+
+n = 261;
+belastning = 1;
+nod = 127;

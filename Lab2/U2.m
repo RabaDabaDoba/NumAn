@@ -12,20 +12,21 @@ plot(x, f(x), 'r');
 title("Area: " + q);
 
 %b
-n = 1000;
+format short
+n = 10;
 limits = [-1 1]; %a b
 h = (limits(2)-limits(1))/n %Ska vara myckte mindre än 1;
 %h = 0.5;
 I = 0;
 counter = 0;
-disp(["Counter" "increment" "x value" "I" "|T(h) - I|"]);
+disp("Counter     increment    x value     I    |T(h) - I|");
 sum = abs(limits(1)) + abs(limits(2));
+T = zeros(1,1/h);
 while (h*counter <= 1)
     T(counter + 1) = h*((f(limits(1) + counter*h*sum) + limits(1) + (counter + 1)*h*sum)/2);
     position = 0;
     increment = 0;
-    if(counter == 0 || counter*h == 1) %Special fall
-        %disp("asdasd");
+    if(counter == 0 || counter*h == 1) %Special fallen
         if(counter == 0)
             position = limits(1);
             increment = f(limits(1))/2;
@@ -44,9 +45,7 @@ while (h*counter <= 1)
         I = I + increment;
         
     end 
-    hold on;
     %drawRect(limits(1) + counter*h*sum,0,limits(1) + (counter+1)*h*sum,f(limits(1) + (counter+1)*h*sum));
-    hold on;
     disp([counter increment position I abs(T(counter+1) - increment)]);
     counter = counter + 1;
 end

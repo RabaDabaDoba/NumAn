@@ -13,20 +13,18 @@ ts2 = theta(2);
 z = [pi/2; 0; pi/6; 0];
 
 counter = 0;
-xlim([-10 10])
-ylim([-10 10])
+x = linspace(15:)
 
 for t=0:h:t
     
     robotF = h * f_robotarm(z, t, ts1, ts2, alpha, beta, gamma, omega);
-    Hallo
+    
     uF = z(1:2) + robotF(1:2);
     vF = z(3:4) + robotF(3:4);
    
     vektor = [uF(1) vF(1)];
     
     if (mod(counter,10)==1)
-        hold on
         plot_robotarm(vektor);
     end
 

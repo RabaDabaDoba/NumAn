@@ -11,5 +11,5 @@ end
 opts={'r-o','MarkerSize',10,'MarkerFaceColor','blue','LineWidth',3};
 plot(xv,yv,opts{:});
 axis equal
-axis([-0.1 1.5 -0.1 1.6])
+axis([-2 2 -2 2])
 drawnow;

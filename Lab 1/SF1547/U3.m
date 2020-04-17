@@ -18,7 +18,7 @@ J = @(x)[2.*x(1) - 186, 2*x(2)-126; 2.*x(1)-12, 2.*x(2)-32];
 guess1 = [50;27]; %First poing
 guess2 = [39;50]; %Second point
 
-start = guess1;
+start = guess2;
 
 x=inf;
 tolerance=1e-8;

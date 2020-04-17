@@ -7,7 +7,7 @@ viscircles(p1, r(1), "Color", 'g');
 viscircles(p2, r(2), "Color", 'm');
 viscircles(p3, r(3), "Color", 'k');
 grid on;
-title("A - Grön, B - Magenta, C - Svart")
+legend("A - Grön, B - Magenta, ")
 
 format long g;
 

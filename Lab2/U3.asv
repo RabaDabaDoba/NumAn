@@ -1,0 +1,34 @@
+theta = 40;
+s = 2;
+beta = 1;
+maxgen = @(x) max(generator(theta + x, 0));
+func1 = @(t) exp(-beta .* power(t,2)) * maxgen(t);
+func2 = @(t) exp(-beta .* power(t,2));
+test = @(x) x.*x;
+%a)
+
+%Lös med function från 2an istället
+
+taljare = integral(func2, -s, s,'RelTol',0.001,'AbsTol',0.1)
+
+func1(2)
+
+%b)
+limits = [-s s];
+h = 0.1;
+Ih = 0;
+
+for i=0:h:1
+    
+    if(i == 0)
+       f = func1(limit(1)) * 0.5; 
+       Ih = Ih + f;
+    end
+    
+    if(i == 1)
+       f = func1(limit(2)) * 0.5; 
+       Ih = Ih + f;
+    end
+    
+    
+end

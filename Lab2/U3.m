@@ -18,7 +18,7 @@ limits = [-s s];
 %h = 0.025;
 h= 0.2;
 Ih = 0;
-counter = 1;
+counter = 1;    
 sum = 2 * s;
 
 

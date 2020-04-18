@@ -1,16 +1,17 @@
 % a)
-
+subplot(2,1,1);
 clear x f q;
 syms x;
 x = -2:0.1:2;
 a = -1:0.1:1;
 f = @(x) sqrt(x+2);
-q = integral(f, -1, 1)
+q = integral(f, -1, 1);
 area(a, f(a),'FaceColor','flat');
 hold on;
+
 plot(x, f(x), 'r');
 title("Area: " + q);
-
+subplot(2,1,2);
 %b
 % format short
 % n = 10;
@@ -62,7 +63,7 @@ format long
 n = 100;
 limits = [-1 1]; %a b
 %h = (limits(2)-limits(1))/n %Ska vara myckte mindre än 1;
-hs = [1, 0.5, 0.25, 0.125, 0.0625, 0.0001]
+hs = [1, 0.5, 0.25, 0.125, 0.0625];
 
 clear finalError;
 
@@ -70,17 +71,13 @@ for k=1:1:size(hs')
     h = hs(k);
     Ih = 0;
     counter = 1;
-    disp("Counter     increment    x value     Ih    |T(h) - I|");
+%     disp("Counter     increment    x value     Ih    |T(h) - I|");
     sum = abs(limits(1)) + abs(limits(2));
-    T = zeros(1,1/h);
-    %error = zeros(1,1/h);
-    clear error;
     %Första speicalfall
     position0 = limits(1);
     increment0 = f(limits(1))/2;
     Ih = Ih + increment0;
-    error(1) = abs(increment0-q);
-    disp([0 increment0 position0 increment0 error(1)]);
+%     disp([0 increment0 position0 increment0 error(1)]);
     
     positionN = limits(2);
     incrementN = f(limits(2))/2;
@@ -92,24 +89,26 @@ for k=1:1:size(hs')
         position = limits(1) + counter*h*sum;
         increment = f(limits(1) + counter*h*sum);
         Ih = Ih + increment;
-        
-        
-        newError = abs(increment - q);
-        error(end+1) = newError;
-        disp([counter increment position Ih newError]);
+%         disp([counter increment position Ih newError]);
         counter = counter + 1;
     end
-    newError = abs(incrementN-q);
-    error(end+1) = newError;
-    disp([((1/h)) incrementN positionN Ih newError]);
-    disp("     Res   2x Res")
+%     disp([((1/h)) incrementN positionN Ih newError]);
+%     disp("     Res   2x Res")
     resultat = (Ih + incrementN)*h;
-    disp([resultat, resultat*2])
+%     disp([resultat, resultat*2])
     
-    finalError(k) = abs(Ih - q);
+    finalError(k) = abs(resultat*2 - q);
 end
 
 
+disp("Error(i)/Error(i-1)");
+for i=2:1:size(finalError')
+    disp(finalError(i)/finalError(i-1))
+    
+end
+loglog(hs, finalError, 'r*')
+hold on
+loglog(hs, 4 * finalError, 'r')
 
 %Fattar inte vad vi gör för fel men om man tar gånger 2 så får man det
 %rätta värdet.

@@ -44,17 +44,16 @@ for k=1:1:size(hs')
     end
     
     I = (h./3).*(f(limits(1)) + 4.*summaOdd + 2.*summaEven + f(limits(2)));
-    finalError1(k) = abs(I*2 - q);
+    finalError(k) = abs(I*2 - q);
 end
 disp("Error(i)/Error(i-1)        Error(i)/Error(i-1) * 16 ");
 
-for i=2:1:size(finalError1')
-    disp([finalError1(i)/finalError1(i-1) finalError1(i)/finalError1(i-1)*16])
+for i=2:1:size(finalError')
+    disp(finalError(i)/finalError(i-1)     finalError(i)/finalError(i-1))
     
 end
-loglog(hs, finalError1, 'g*')
-hold on
-loglog(hs, 16 * finalError1, 'g')
+loglog(hs, finalError, 'r*')
+
 % 
 % syms x;
 % x = -2:0.1:2;

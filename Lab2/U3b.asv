@@ -1,0 +1,44 @@
+tic;
+theta = 40;
+s = 2;
+beta = 1;
+maxgen = @(x) max(generator(theta + x, 0));
+func1 = @(t) exp(-beta .* power(t,2)) * maxgen(t);
+func2 = @(t) exp(-beta .* power(t,2));
+test = @(x) x.*x;
+func3 = @(t) exp(-beta .* power(t,2)) * 10482.058030598;
+%a)
+
+%Lös med function från 2an istället
+
+namnare = integral(func2, -s, s)
+
+
+%b)
+limits = [-s s];
+%h = 0.025;
+h= 0.01;
+Ih = 0;
+counter = 1;
+sum = abs(limits(1)) + abs(limits(2));
+Ih = Ih + func2(limits(1))/2;
+
+while (h*counter < 1)
+    
+    Ih = Ih + func2(limits(1) + counter*h*sum);
+    
+    counter = counter + 1;
+end
+
+Ih = Ih + func2(limits(2))/2;
+Ih = Ih*h*2
+
+
+
+
+
+%Svar 784.8848
+% taljare = 784.8848;
+% Ih = Ih * h
+% mBar = taljare/namnare
+

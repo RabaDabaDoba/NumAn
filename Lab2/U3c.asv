@@ -50,11 +50,61 @@ for k=1:1:size(hs')
     Ih1 = (h./3).*(func1(limits(1)) + 4.*summaOdd1 + 2.*summaEven1 + func1(limits(2)))*4
     Ih2 = (h./3).*(func2(limits(1)) + 4.*summaOdd2 + 2.*summaEven2 + func2(limits(2)))*4
     mBar = Ih1/Ih2;
-    results(k) = mBar;
+    results2(k) = mBar;
     disp(["Done with " + hs(k)])
 end
 
-loglog(hs, results, 'r*');
+loglog(hs, results2, 'r*');
+
+
+
+
+
+
+number = 10;
+hs = [];
+
+for a=0:1:number
+    h = 1 ./ power(2,a);
+    hs(a+1) = h; %Lista av alla h
+    %h = hs(a);
+    itter = 0;
+    Ih1 = 0;
+    even = 0; 
+    odd = 0;
+    for i=limits(1):h:limits(2)
+        
+        if(i == limits(1))
+            Ih1 = Ih1 + f(i);
+        end
+        
+        if(i == limits(2))
+            Ih1 = Ih1 + f(i);
+        end
+        
+        if(i > limits(1) && i < limits(2))
+            if(mod(itter,2)==0) %Even
+                even = even + f(i);
+            else
+                odd = odd + f(i);
+            end
+        end
+        itter = itter + 1;
+    end
+    itter;
+    Ih1 = (h./3) .* (Ih1 + 4 .* odd + 2 .* even);
+    resSimp(a+1) = Ih1;
+    errorSimp(a+1) = abs(Ih1-I);
+end
+
+
+
+
+
+
+
+
 
 %40.8696451741481
+%10499.9999999996
 

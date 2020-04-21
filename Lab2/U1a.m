@@ -56,6 +56,5 @@ end
 iter
 x
 
-viscircles(x', 3, "Color", 'b');
 viscircles(x', 0.1, "Color", 'b');
 

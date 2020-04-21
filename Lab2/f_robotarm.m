@@ -14,6 +14,6 @@ f=zeros(size(z0));
 f(1)=z0(2);
 f(2)=-alpha*(z0(1)-ts1) - gamma .* z0(2) + beta .* sin(omega .* t);
 f(3)=z0(4);
-f(4)=-alpha*(z0(3)-ts2) - gamma .* (z0(4) .* abs(z0(2))) + beta .* sin(omega .* t);
+f(4)=-alpha*(z0(3)-ts2) - gamma .* (z0(4) + abs(z0(2))) + beta .* sin(omega .* t);
 
 

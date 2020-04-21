@@ -1,3 +1,4 @@
+clf;
 R = 1;
 theta = [0 0];
 xe = @(R, t1, t2) R .* cos(t1) + R .* cos(t2);

@@ -37,6 +37,11 @@ for a=0:1:number
     errorTrap(a+1) = abs(Ih-I);
 end
 
+%Visar att felet är 1/4 när h halveras
+for i=2:1:size(errorTrap')
+   disp(errorTrap(i)/errorTrap(i-1)) 
+end
+
 subplot(2,1,2);
 
 loglog(hs, errorTrap, "b*");

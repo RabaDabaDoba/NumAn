@@ -43,7 +43,16 @@ for a=0:1:number
     Ih = (h./3) .* (Ih + 4 .* odd + 2 .* even);
     resSimp(a+1) = Ih;
     errorSimp(a+1) = abs(Ih-I);
+    
+    %Ih(i)-Ih(i-1)
 end
+
+for i=2:1:size(errorSimp')
+   errorSimpFel(i-1)=errorSimp(i-1)/errorSimp(i);
+   disp(errorSimpFel(i-1));
+end
+
+
 subplot(2,1,2);
 loglog(hs, errorSimp, 'r*');
 legend("SamTrap", "Simpson");

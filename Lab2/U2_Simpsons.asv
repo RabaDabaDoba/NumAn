@@ -1,18 +1,20 @@
 format long
 syms x;
-clear res;
+clear resSimp errorSimp hs;
 x = -2:0.1:2;
 a = -1:0.1:1;
 f = @(x) sqrt(x+2);
-q = integral(f, -1, 1)
+I = integral(f, -1, 1);
 
 limits = [-1 1]; %a b
 %h = (limits(2)-limits(1))/n %Ska vara myckte mindre än 1;
 %h = 0.5;
-number = 20;
+number = 10;
+hs = [];
 
 for a=0:1:number
     h = 1 ./ power(2,a);
+    hs(a+1) = h; %Lista av alla h
     %h = hs(a);
     Ih = 0;
     itter = 0;
@@ -37,15 +39,23 @@ for a=0:1:number
         end
         itter = itter + 1;
     end
-    itter
+    itter;
     Ih = (h./3) .* (Ih + 4 .* odd + 2 .* even);
-    res(a+1) = Ih;
+    resSimp(a+1) = Ih;
+    errorSimp(a+1) = abs(Ih-I);
+    
+    %Ih(i)-Ih(i-1)
+end
+
+for i=2:1:size(errorSimp)
+    errorSimpKonv(i-1) = abs(Ih-);
     
 end
 
 
-
-
+subplot(2,1,2);
+loglog(hs, errorSimp, 'r*');
+legend("SamTrap", "Simpson");
 
 
 

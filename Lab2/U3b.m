@@ -57,7 +57,9 @@ number = 3;
 hs = [];
 
 for a=0:1:number
+    
     h = 1 ./ power(2,a);
+    disp(["Jobbar på " h])
     hs(a+1) = h; %Lista av alla h
     %h = hs(a);
     Ih2 = 0;
@@ -86,6 +88,7 @@ for a=0:1:number
     resTrap1(a+1) = Ih1;
     resTrap2(a+1) = Ih2;
     mBarTrap(a+1) = Ih1/Ih2;
+    disp(["Färdig med: " h])
     %errorTrap(a+1) = abs(Ih-I);
 end
 

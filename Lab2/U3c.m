@@ -62,12 +62,13 @@ func3 = @(t) exp(-beta .* power(t,2)) * 10482.058030598;
 
 
 
-number = 3;
+number = 1;
 hs = [];
 limits = [-s s];
-
+disp("asd")
 for a=0:1:number
     h = 1 ./ power(2,a);
+    disp(["Jobbar på " h])
     hs(a+1) = h; %Lista av alla h
     %h = hs(a);
     itter = 0;
@@ -106,17 +107,19 @@ for a=0:1:number
     resSimp1(a+1) = Ih1;
     resSimp2(a+1) = Ih2;
     mBarSimp(a+1) = Ih1/Ih2;
+    disp(["Färdig med: " h])
     %errorSimp(a+1) = abs(Ih1-I);
 end
 
-disp(["h"  "| Ih(h) - Ih(h/2) |"])
+disp(["h"  "| Ih(h) - Ih(h/2) |" "|Ih/2-I| - |Ih/2-Ih|"])
 for i=2:1:size(hs')
-    errorSimp(i-1) = abs(mBarSimp(i-1) - mBarSimp(i));
-    disp([hs(i) errorSimp(i-1)])
+    errorSimp1(i-1) = abs(mBarSimp(i-1) - mBarSimp(i));
+    errorSimp2(i-1) = abs(mBarSimp(i) - 10500) - errorSimp1(i-1);
+    disp([hs(i) errorSimp(i-1) errorSimp2(i-1)])
 end
 
 
-
+ 
 
 
 

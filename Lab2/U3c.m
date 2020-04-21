@@ -115,7 +115,7 @@ disp(["h"  "| Ih(h) - Ih(h/2) |" "|Ih/2-I| - |Ih/2-Ih|"])
 for i=2:1:size(hs')
     errorSimp1(i-1) = abs(mBarSimp(i-1) - mBarSimp(i));
     errorSimp2(i-1) = abs(mBarSimp(i) - 10500) - errorSimp1(i-1);
-    disp([hs(i) errorSimp(i-1) errorSimp2(i-1)])
+    disp([hs(i) errorSimp1(i-1) errorSimp2(i-1)])
 end
 
 

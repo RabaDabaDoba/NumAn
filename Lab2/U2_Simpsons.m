@@ -1,3 +1,11 @@
+%OBS!
+
+%Kör U2Log för att få komplett svar för hela fråga 2
+
+
+
+
+
 format long
 syms x;
 clear resSimp errorSimp hs;
@@ -6,16 +14,13 @@ a = -1:0.1:1;
 f = @(x) sqrt(x+2);
 I = integral(f, -1, 1);
 
-limits = [-1 1]; %a b
-%h = (limits(2)-limits(1))/n %Ska vara myckte mindre än 1;
-%h = 0.5;
+limits = [-1 1]; 
 number = 10;
 hs = [];
 
 for a=0:1:number
     h = 1 ./ power(2,a);
     hs(a+1) = h; %Lista av alla h
-    %h = hs(a);
     Ih = 0;
     itter = 0;
     even = 0; 
@@ -31,7 +36,7 @@ for a=0:1:number
         end
         
         if(i > limits(1) && i < limits(2))
-            if(mod(itter,2)==0) %Even
+            if(mod(itter,2)==0) 
                 even = even + f(i);
             else
                 odd = odd + f(i);
@@ -43,8 +48,7 @@ for a=0:1:number
     Ih = (h./3) .* (Ih + 4 .* odd + 2 .* even);
     resSimp(a+1) = Ih;
     errorSimp(a+1) = abs(Ih-I);
-    
-    %Ih(i)-Ih(i-1)
+
 end
 
 for i=2:1:size(errorSimp')

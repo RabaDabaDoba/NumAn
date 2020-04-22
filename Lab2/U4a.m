@@ -17,8 +17,6 @@ start = [pi/2;pi/12];
 x=inf;
 tolerance=1e-10;
 
-%loop
-%abs?
 while (abs(x)>tolerance)
     
 A=J;

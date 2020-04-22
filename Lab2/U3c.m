@@ -7,62 +7,9 @@ func1 = @(t) exp(-beta .* power(t,2)) * maxgen(t);
 func2 = @(t) exp(-beta .* power(t,2));
 test = @(x) x.*x;
 func3 = @(t) exp(-beta .* power(t,2)) * 10482.058030598;
-%a)
 
-% %Lös med function från 2an istället
-% 
-% namnare = integral(func2, -s, s);
-% hs = [1, 0.5, 0.25, 0.125, 0.0625];
-% 
-% %b)
-% limits = [-s s];
-% %h = 0.025;
-% clear results;
-% for k=1:1:size(hs')
-%     h= hs(k);
-%     Ih2 = 0;
-%     Ih1 = 0;
-%     counter = 1;
-%     sum = abs(limits(1)) + abs(limits(2));
-%     summaOdd1 = 0;
-%     summaEven1 = 0;
-%     summaOdd2 = 0;
-%     summaEven2 = 0;
-%     
-%     while (h*counter < 1)
-%         %h*counter
-%         currentValue = limits(1) + counter*h*sum;
-%         if(rem(counter, 2) == 0)
-%             %Jämna
-%             %disp("Even");
-%             summaEven1 = summaEven1 + func1(currentValue);
-%             summaEven2 = summaEven2 + func2(currentValue);
-%         else
-%             %Udda
-%             %disp("Odd");
-%             summaOdd1 = summaOdd1 + func1(currentValue);
-%             summaOdd2 = summaOdd2 + func2(currentValue);
-%         end
-%         %error(counter+1) = abs(incr(counter+1) - q);
-%         %disp(error(counter+1) );
-%         counter = counter + 1;
-%     end
-%     
-%     Ih1 = (h./3).*(func1(limits(1)) + 4.*summaOdd1 + 2.*summaEven1 + func1(limits(2)))*4
-%     Ih2 = (h./3).*(func2(limits(1)) + 4.*summaOdd2 + 2.*summaEven2 + func2(limits(2)))*4
-%     mBar = Ih1/Ih2;
-%     results2(k) = mBar;
-%     disp(["Done with " + hs(k)])
-% end
-% 
-% loglog(hs, results2, 'r*');
-
-
-
-
-
-
-number = 1;
+%Ändra denna för få flera h
+number = 3;
 hs = [];
 limits = [-s s];
 disp("asd")
@@ -111,11 +58,11 @@ for a=0:1:number
     %errorSimp(a+1) = abs(Ih1-I);
 end
 
-disp(["h"  "| Ih(h) - Ih(h/2) |" "|Ih(h/2)-I| - |Ih(h/2)-Ih|"])
+disp(["h"  "| Ih(h) - Ih(h/2) |" ])
 for i=2:1:size(hs')
     errorSimp1(i-1) = abs(mBarSimp(i-1) - mBarSimp(i));
-    errorSimp2(i-1) = abs(mBarSimp(i) - 10500) - errorSimp1(i-1);
-    disp([hs(i) errorSimp1(i-1) errorSimp2(i-1)])
+    %errorSimp2(i-1) = abs(mBarSimp(i) - 10500) - errorSimp1(i-1);
+    disp([hs(i) errorSimp1(i-1)])
 end
 
 

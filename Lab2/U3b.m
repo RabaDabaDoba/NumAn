@@ -21,7 +21,6 @@ hs = [];
 for a=0:1:number
     
     h = 1 ./ power(2,a);
-    dsip("asda");
     disp(["Jobbar på " h]);
     hs(a+1) = h; %Lista av alla h
     Ih2 = 0;

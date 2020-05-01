@@ -1,0 +1,48 @@
+// Steg för att sätta upp metoden
+// 	1. Diskretisera. Inför diskreta punkter, xj och h. Avståndet mellan punkterna är h.
+// - Approximera exakta lösningen yj = y(xj)
+// 	2. Approximera derivatorna mha numerisk derivering. Approximera andraderivatan mha en finit differens (gäller i varje inre punkt).
+// Sätt in i diffekv —> y(xj)’’ = f(xj) + O(h^2)
+// 	3. Definiera approximationen —> försumma O(h^2) och byt y(xj) mot yj.
+// Första o sista värdet är beta o alpha i F12.
+// 	4. Utnyttja randvillkoren
+// R = 1 utnyttja att u = y0 = Ti
+//
+// Linjärt ekvationssystem med matris x vektor med obekanta
+//
+// 	5. Skriv i matrisform
+// Y - alla obekanta värdena
+// A = 1/h^2 * alla mellanvärden. Diagonal matris
+// B = högerledet på s13/28 i F12
+//
+// Ay = b —> löses i Matlab
+// Lös med backslash —> y =  lösningen
+//
+// Sammanfattning
+// Differensmetoden leder till ett linjärt ekvsystem Ay = b. Notera att matrisen A kan bli ganska stor. A är en gles matris —> använd sparse-format i Matlab!
+// Metoden har noggrannhetsordning 2.
+
+// j är iterationsvariabel --> 1 - (N-2)
+// 1 <= r <= 2
+N = 50;
+rj = 1 + jh;
+h = 1/N;
+Ti = 350;
+Te = 20;
+
+k = 50;
+alpha = 15;
+
+u(1) = Ti;
+uprim(2) = -1*alpha * (u - Te) / k;
+uprim = 3u(N) - 4u(N) + u(N-2) / 2*h;
+
+// approximera derivatorna med numerisk derivering
+//ubiss = u(r(j-1)) - 2*u(r(j)) + u(r(j+1)) / h^2;
+start_inner = 1 + h;
+end_inner = 2 - h;
+j = 1:1:(N-2);
+
+for r=start_inner:h:end_inner
+  u
+end

@@ -29,27 +29,45 @@ grid on;
 
 %a) v2
 
-%Från assen: begynnelse data vid t0, vi har en andra, skriv on till första ordning. Derivator i vänster, skicka in höger
+%Från assen: begynnelse data vid t0, vi har en andra ordning, skriv on till
+%första ordning. Derivator i vänster, skicka in höger in ode
 
 
-%Hur ska vi använda Gauss Newton när vi har 17 (storlek av z) ekvationer med olika z?
+%Hur ska vi använda Gaussclear Newton när vi har 17 (storlek av z) ekvationer med olika z?
 %%%fGN = 0;
 %%Stoppa in hela skiten
 
 jGN = @(p) p(2)/1000 - (p(3).*exp(z/1000))/1000;
-fGN = @(p) cV - 4800 + p(1) + p(2) .* (z/1000) + p(3) .*  exp(-1 .* (z/1000));
-while 1
-    %Evaluera f
-    b = fGN(p);
-    %Evaluera jacobian
-    A = jGN(p);
-    d = -A\b; 
-    p = p + d(1:3)
-  if norm(d)<=1e-15  % stop iteration if norm(d)<=StepTolerance
-    break
-  end
+fGN = @(p) -cV + 4800 + p(1) + p(2) .* (z/1000) + p(3) .*  exp(-1 .* (z/1000));
+% while 1
+%     %Evaluera f
+%     b = fGN(p);
+%     %Evaluera jacobian
+%     A = jGN(p);
+%     d = -A\b 
+%     p = p + d;
+%   if norm(d)<=1e-15  % stop iteration if norm(d)<=StepTolerance
+%     break
+%   end
+% 
+% end
+z = z';
+cV = cV';
+a =5.6596; b = 14.582; c = 257.43; d = 1;
+clear p;
+p = [a b c d]';
 
+hnorm = 1;
+tolerans = 1e-8;
+while hnorm > tolerans
+    h = jGN(p)\fGN(p);
+    hnorm = norm(h, inf);
+    p = p - h;
+    a = p(1); b = p(2); c = p(3);d = p(4);
+    
 end
+p
+
 
 %b)
 

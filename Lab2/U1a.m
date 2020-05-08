@@ -24,7 +24,7 @@ tau=1e-10;
 dxnorm=1;
 iter=0;
 while (dxnorm>tau && iter<100)
-    dx = -J(x)\F(x);
+    dx = -J(x)\F(x)
     dxnorm = norm(dx);
     x = x + dx;
     iter = iter+1;

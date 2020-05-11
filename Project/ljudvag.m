@@ -18,12 +18,12 @@ g = @(z) 4800 + p(1) + p(2) .* (z/1000) + p(3) .*  exp(-p(4) .* (z/1000));
 for i=1:1:size(z)
     sum(i) = g(z(i)');
 end  
-subplot(3,1,1);
-plot(z, cV, 'b');
-hold on;
-plot(z, sum, 'r');
-legend("Data Points","Approximation");
-grid on;
+% subplot(3,1,1);
+% plot(z, cV, 'b');
+% hold on;
+% plot(z, sum, 'r');
+% legend("Data Points","Approximation");
+% grid on;
 
 %Jacobian
 %J= @(p) p(2)/1000 - (p(3)*exp(-z/1000))/1000;
@@ -67,14 +67,14 @@ g = @(z) 4800 + X(1) + X(2) .* (z/1000) + X(3) .*  exp(-X(4) .* (z/1000));
 for i=1:1:size(z)
     sum2(i) = g(z(i)');
 end  
-subplot(3,1,2);
+subplot(4,1,1);
 plot(z, cV, 'b');
 hold on;
 plot(z, sum2, '*');
 legend("Data Points","Approximation");
 grid on;
 
-subplot(3,1,3);
+subplot(4,1,2);
 %Vi går från 0 till 30 nautical miles
 x=0:1000:6076*30;
 %Ode45
@@ -84,6 +84,30 @@ plot(X,Z(:,1))
 hold on
 %Plotta punkten vi 30 nautical miles, som ligger nära ett djup på 4000 feet
 plot(180000,4000,'.-');
+
+subplot(4,1,3);
+
+clear endpoints endvalues;
+
+degreesinterval = -15:1:20;
+iter = 1;
+for i=degreesinterval
+    x=0:1000:6076*30;
+    [X,Z]=ode45(@diffekv,x,[5000 tand(i)]);
+    endvalues(iter) = Z(end,1);
+    plot(X,Z(:,1), 'r') 
+    %hold on
+    iter = iter + 1;
+end
+
+subplot(4,1,4);
+plot(degreesinterval, endvalues, 'b*');
+yline(4000);
+legend("End depth at beta0")
+xlabel("Initial angle - beta0");
+ylabel("End depth")
+
+
 
 function res=diffekv(x,Z)
     %Gissningar

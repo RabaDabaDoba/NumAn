@@ -1,4 +1,4 @@
-clc
+clc; clearvars;
 format long g;
 counter = 2;
 M = 1.05e04;
